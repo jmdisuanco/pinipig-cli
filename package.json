@@ -19,9 +19,7 @@
     "8colors": "^1.0.1",
     "@octokit/rest": "^16.13.1",
     "clear": "^0.1.0",
-    "clui": "^0.3.6",
     "commander": "^2.19.0",
-    "configstore": "^4.0.0",
     "figlet": "^1.2.1",
     "fs-extra": "^7.0.1",
     "inquirer": "^6.2.1",
@@ -29,10 +27,7 @@
     "lodash": "^4.17.11",
     "minimist": "^1.2.0",
     "ora": "^3.0.0",
-    "simple-git": "^1.107.0",
-    "touch": "^3.1.0"
-  },
-  "devDependencies": {
+    "touch": "^3.1.0",
     "prettier": "^1.16.1"
   }
 }
