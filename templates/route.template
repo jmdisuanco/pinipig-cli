@@ -1,0 +1,36 @@
+const ${Model} = require('../models/${model}')
+const {
+  create,
+  read,
+  update,
+  readList,
+  destroy,
+  count
+} = require('../common/crudhttp')
+
+let c = create(${Model})
+let r = read(${Model})
+let u = update(${Model})
+let d = destroy(${Model})
+let rl = readList(${Model})
+let total = count(${Model})
+
+let routes = [{
+    url: '/${model}/:id',
+    GET: r,
+    PUT: u,
+    DELETE: d
+  },
+  {
+    url: '/${model}',
+    POST: c,
+    GET: rl
+  },
+  {
+    url: '/${model}/count',
+    GET: total
+  }
+]
+
+
+module.exports = routes

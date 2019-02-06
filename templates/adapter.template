@@ -1,0 +1,4 @@
+const caminte = require('caminte')
+const config = require('../config/default')
+let ${method} = caminte.Schema
+module.exports = new ${method}(config.${name}.driver, config.${name})
