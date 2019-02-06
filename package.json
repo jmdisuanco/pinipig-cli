@@ -15,6 +15,10 @@
   ],
   "author": "John Martin R. Disuanco",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jmdisuanco/pinipig-cli"
+  },
   "dependencies": {
     "8colors": "^1.0.1",
     "@octokit/rest": "^16.13.1",
