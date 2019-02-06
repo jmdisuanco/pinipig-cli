@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "8colors": "^1.0.1",
-    "@octokit/rest": "^16.13.1",
     "clear": "^0.1.0",
     "commander": "^2.19.0",
     "figlet": "^1.2.1",
