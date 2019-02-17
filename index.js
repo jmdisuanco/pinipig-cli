@@ -46,7 +46,6 @@ let askPackageDetails = async (data) => {
         "expiresIn": "1w"
       }
     }
-    console.log(confJWT)
     conf.set('jwt', confJWT)
     if (package.appType === 'REST and Real-Time (Socket.io)') {
       files.insertLine(2, `const io = require('socket.io')()`, '/src/index.js')
