@@ -4,6 +4,10 @@
   "description": "Pinipig Command Line Interface",
   "main": "index.js",
   "scripts": {
+    "pub:patch": "npm version patch && npm publish",
+    "pub:minor": "npm version minor && npm publish",
+    "pub:major": "npm version major && npm publish",
+    "postpublish": "git push --follow-tags",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
@@ -14,7 +18,7 @@
     "cli"
   ],
   "author": "John Martin R. Disuanco",
-  "license": "ISC",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/jmdisuanco/pinipig-cli"

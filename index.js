@@ -27,6 +27,19 @@ let askPackageDetails = async (data) => {
   //write package file
   writeFile('/package.json', package, 'package.json')
 
+  //create needed empty directories
+  const fs = require('fs-extra')
+  const adaptersDir = './src/adapters'
+  const hooksDir = './src/hooks'
+  fs.ensureDir(adaptersDir, err => {
+    console.log(err) // => null
+    console.log(`directory ${adaptersDir} has been created`)
+  })
+
+  fs.ensureDir(hooksDir, err => {
+    console.log(err) // => null
+    console.log(`directory ${hooksDir} has been created`)
+  })
   //copy framework structure
   let source = path.join(__dirname, './framework')
 
@@ -47,25 +60,9 @@ let askPackageDetails = async (data) => {
       }
     }
     conf.set('jwt', confJWT)
-    if (package.appType === 'REST and Real-Time (Socket.io)') {
-      files.insertLine(2, `const io = require('socket.io')()`, '/src/index.js')
-      files.append(`
-        io.attach(server)
-        io.on('connection', function(socket){
-           console.log('a user connected');
-           socket.on('disconnect', function(){
-             console.log('user disconnected');
-           })
-           socket.on('chat message', function(msg){
-               io.emit('chat message', msg);
-             })
-        });`, '/src/index.js')
-    }
   })
 
   installFromPackage()
-
-
 }
 
 
@@ -165,6 +162,9 @@ pinipig
           } else if (answer.adapter === 'postgres') {
             let meta = await inquirer.postgres()
             install.postgres(meta)
+          } else if (answer.adapter === 'tingodb') {
+            let meta = await inquirer.tingodb()
+            install.tingodb(meta)
           }
         })()
       }
@@ -175,12 +175,6 @@ pinipig
         console.log(adapter)
       })()
     }
-  }).on('--help', function () {
-    console.log('')
-    console.log('Examples:')
-    console.log('');
-    console.log('  $ deploy exec sequential')
-    console.log('  $ deploy exec async')
   })
 
 pinipig

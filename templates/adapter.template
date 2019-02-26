@@ -1,4 +1,5 @@
-const caminte = require('caminte')
+const pinipig = require('pinipig')
+const { orm } = pinipig
 const config = require('../config/default')
-let ${method} = caminte.Schema
+let ${method} = orm.Schema
 module.exports = new ${method}(config.${name}.driver, config.${name})

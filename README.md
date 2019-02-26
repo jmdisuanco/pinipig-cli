@@ -1,3 +1,3 @@
-#Pinipig Command Line Interface
+# Pinipig Command Line Interface
 
 ## Documenting soon.

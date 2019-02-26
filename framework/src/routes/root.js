@@ -1,4 +1,5 @@
 const pkg = require('../../package')
+
 const Root = (ctx) => {
   let message = JSON.stringify({
     result: 'ok',
