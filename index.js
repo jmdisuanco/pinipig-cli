@@ -7,6 +7,7 @@ const files = require('./lib/files')
 const writeFile = require('./lib/writefile')
 const inquirer = require('./lib/inquirer')
 const pinipig = require('commander')
+const pkg = require('./package')
 const path = require('path')
 const ora = require('ora')
 const install = require('./lib/installers')
@@ -72,7 +73,7 @@ console.log(c.yellow(figlet.textSync('Pinipig', {
   horizontalLayout: 'full'
 })))
 pinipig
-  .version('0.1.0')
+  .version(`v${pkg.version}`)
 
 pinipig
   .command('init [name]')
