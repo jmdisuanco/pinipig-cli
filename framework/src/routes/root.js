@@ -19,7 +19,7 @@ let routes = [{
   },
   {
     url: '/*',
-    GET: streaFile('./src/public')
+    GET: streamFile('./src/public')
   }
 ]
 
