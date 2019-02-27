@@ -1,21 +1,26 @@
 const pkg = require('../../package')
-
-const Root = (ctx) => {
-  let message = JSON.stringify({
-    result: 'ok',
+const {
+  streamFile
+} = require('pinipig')
+const Info = (ctx) => {
+  let message = {
+    result: 'Ok',
     server: 'Pinipig Server',
     app: pkg.name,
     version: pkg.version,
     description: pkg.description
-  })
-  ctx.res.end(message)
+  }
+  ctx.res.json(message)
 }
 
 let routes = [{
-    url: '/',
-    GET: Root,
+    url: '/info.json',
+    GET: Info,
   },
-
+  {
+    url: '/*',
+    GET: streaFile('./src/public')
+  }
 ]
 
 
