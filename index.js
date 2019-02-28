@@ -32,6 +32,7 @@ let askPackageDetails = async (data) => {
   const fs = require('fs-extra')
   const adaptersDir = './src/adapters'
   const hooksDir = './src/hooks'
+  const modelsDir = './src/models'
   fs.ensureDir(adaptersDir, err => {
     console.log(err) // => null
     console.log(`directory ${adaptersDir} has been created`)
@@ -40,6 +41,11 @@ let askPackageDetails = async (data) => {
   fs.ensureDir(hooksDir, err => {
     console.log(err) // => null
     console.log(`directory ${hooksDir} has been created`)
+  })
+
+  fs.ensureDir(modelsDir, err => {
+    console.log(err) // => null
+    console.log(`directory ${modelsDir} has been created`)
   })
   //copy framework structure
   let source = path.join(__dirname, './framework')
