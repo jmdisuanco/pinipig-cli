@@ -13,6 +13,7 @@
   "bin": {
     "pinipig": "./index.js"
   },
+  "homepage": "https://pinipig.js.org/#/cli_usage",
   "keywords": [
     "pinipig",
     "cli"
