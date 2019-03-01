@@ -31,6 +31,7 @@ Commands:
 ```
 
 <img src="https://pinipig.js.org/_images/pinipig-cli_init.png" alt="Pinipig Command Line Interface"/>
+
 ## Documentation
 
 visit Pinipig [Documentation](https://pinipig.js.org/#/cli_usage)
