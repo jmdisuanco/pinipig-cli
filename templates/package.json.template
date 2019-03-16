@@ -8,7 +8,7 @@
         "start": "node ./src/index.js"
     },
     "dependencies": {
-        "pinipig": "^1.3.4"
+        "pinipig": "^1.3.9"
     },
     "keywords": [${keywords}],
     "author": "${author}",
