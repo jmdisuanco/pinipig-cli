@@ -11,17 +11,16 @@ const pkg = require('./package')
 const path = require('path')
 const ora = require('ora')
 const install = require('./lib/installers')
+const pluginInstaller = require('./lib/pluginInstaller')
 const fs = require('fs-extra')
 const modelMaker = require('./lib/modelMaker')
 const routeMaker = require('./lib/routeMaker')
 const json = require('./lib/json')
 const generateSecret = require('./lib/generatesecret')
 const conf = new json()
-const {
-  installFromPackage,
-} = require('./lib/npm')
+const { installFromPackage } = require('./lib/npm')
 
-let askPackageDetails = async (data) => {
+let askPackageDetails = async data => {
   const package = await inquirer.packageJson(data)
   package.keywords = JSON.stringify(package.keywords.split(','))
 
@@ -50,8 +49,8 @@ let askPackageDetails = async (data) => {
   //copy framework structure
   let source = path.join(__dirname, './framework')
 
-  fs.copy(source, files.getCurrentPath(), function (err) {
-    const spinnerF = ora('Building Structure').start();
+  fs.copy(source, files.getCurrentPath(), function(err) {
+    const spinnerF = ora('Building Structure').start()
     if (err) {
       spinnerF.fail(['Unable to Build the Structure'])
       return false
@@ -59,12 +58,12 @@ let askPackageDetails = async (data) => {
     spinnerF.succeed(['Pinipig structure built'])
     conf.init('./src/config/default.json')
     let confJWT = {
-      "secret": `${generateSecret(128)}`,
-      "option": {
-        "issuer": `${package.name}`,
-        "subject": "userAuth",
-        "expiresIn": "1w"
-      }
+      secret: `${generateSecret(128)}`,
+      option: {
+        issuer: `${package.name}`,
+        subject: 'userAuth',
+        expiresIn: '1w',
+      },
     }
     conf.set('jwt', confJWT)
   })
@@ -72,80 +71,103 @@ let askPackageDetails = async (data) => {
   installFromPackage()
 }
 
-
 /**  Start of console **/
 clear()
-console.log(c.yellow(figlet.textSync('Pinipig', {
-  horizontalLayout: 'full'
-})))
-pinipig
-  .version(`v${pkg.version}`)
+console.log(
+  c.yellow(
+    figlet.textSync('Pinipig', {
+      horizontalLayout: 'full',
+    })
+  )
+)
+pinipig.version(`v${pkg.version}`)
 
 pinipig
   .command('init [name]')
   .description('run setup commands for all envs')
-  .option("-a, --auto", "auto install")
-  .action(function (name, options) {
-    name == undefined ? name = files.getCurrentDirectoryBase().replace('-', '') : null
+  .option('-a, --auto', 'auto install')
+  .action(function(name, options) {
+    name == undefined
+      ? (name = files.getCurrentDirectoryBase().replace('-', ''))
+      : null
     let data = {
-      name: name
+      name: name,
     }
     console.log(`initializing ${name} App`)
     askPackageDetails(data)
-  });
+  })
+
+pinipig
+  .command('install [plugin]')
+  .description('install pinipig plugin')
+  .option('-f')
+  .action(function(plugin, options) {
+    if (plugin == undefined) {
+      console.log('install which plugin?')
+      return
+    }
+    let data = {
+      plugin,
+    }
+    console.log(`installing ${plugin} plugin...`)
+    pluginInstaller(data)
+  })
 
 pinipig
   .command('adapter')
   .alias('db')
   .description('Add DB Adapter')
-  .option("-a --add", "Add Database Connection/ Adapter [memory, mongodb, sqlite, redis]")
-  .option("-ls --list", "List Existing DB Adapters")
-  .action(function (cmd, options) {
+  .option(
+    '-a --add',
+    'Add Database Connection/ Adapter [memory, mongodb, sqlite, redis]'
+  )
+  .option('-ls --list', 'List Existing DB Adapters')
+  .action(function(cmd, options) {
     if (cmd) {
       if (cmd === 'sqlite') {
-        (async () => {
+        ;(async () => {
           console.log('creating SQLlite3 Adapter')
           const meta = await inquirer.sqlite()
           install.sqlite(meta)
         })()
       } else if (cmd === 'mongodb') {
-        (async () => {
+        ;(async () => {
           console.log('creating MongoDB Adapter')
           const db = await inquirer.mongodb()
           console.log(db)
         })()
       } else if (cmd === 'mysql') {
-        (async () => {
+        ;(async () => {
           console.log('creating mySQL Adapter')
           const db = await inquirer.mysql()
           console.log(db)
         })()
       } else if (cmd === 'rethinkdb') {
-        (async () => {
+        ;(async () => {
           console.log('creating reThinkDB Adapter')
           const db = await inquirer.rethinkdb()
           console.log(db)
         })()
       } else if (cmd === 'postgres') {
-        (async () => {
+        ;(async () => {
           console.log('creating Postgres Adapter')
           const db = await inquirer.postgres()
           console.log(db)
         })()
       } else if (cmd === 'redis') {
-        (async () => {
+        ;(async () => {
           console.log('creating Redis Adapter')
           const db = await inquirer.redis()
           console.log(db)
         })()
       } else if (cmd === 'memory') {
-        (async () => {
+        ;(async () => {
           console.log('creating memory Adapter')
           const db = await inquirer.memory()
           console.log(db)
         })()
       } else {
-        (async () => {
+        ;(async () => {
           console.log('DB Adapter not found \n please select from the list')
           const answer = await inquirer.whichAdapter()
           if (answer.adapter === 'sqlite') {
@@ -176,7 +198,7 @@ pinipig
         })()
       }
     } else {
-      (async () => {
+      ;(async () => {
         console.log('Please specify a Database')
         const adapter = await inquirer.whichAdapter()
         console.log(adapter)
