@@ -29,7 +29,6 @@ Commands:
   adapter|db [options]        Add DB Adapter
   model|m [options]           create a Model
 
-
 ```
 
 <img src="https://pinipig.js.org/_images/pinipig-cli_init.png" alt="Pinipig Command Line Interface"/>
