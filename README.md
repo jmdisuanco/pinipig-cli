@@ -24,9 +24,11 @@ Options:
   -h, --help             output usage information
 
 Commands:
-  init [options] [name]  run setup commands for all envs
-  adapter|db [options]   Add DB Adapter
-  model|m [options]      create a Model
+  init [options] [name]       run setup commands for all envs
+  install [options] [plugin]  install pinipig plugin
+  adapter|db [options]        Add DB Adapter
+  model|m [options]           create a Model
+
 
 ```
 
