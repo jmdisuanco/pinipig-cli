@@ -1,5 +1,6 @@
 const pinipig = require('pinipig')
 const {crud} = pinipig
+const {cors} = pinipig.utils
 const ${Model} = require('../models/${model}')
 const {
   create,
@@ -19,18 +20,21 @@ let total = count(${Model})
 
 let routes = [{
     url: '/${model}/:id',
-    GET: r,
-    PUT: u,
-    DEL: d
+    GET: [cors,r],
+    PUT: [cors, u],
+    DEL: [cors, d],
+    OPTIONS: cors
   },
   {
     url: '/${model}',
-    POST: c,
-    GET: rl
+    POST: [cors, c],
+    GET: [cors, rl],
+    OPTIONS: cors
   },
   {
     url: '/${model}/count',
-    GET: total
+    GET: [cors, total],
+    OPTIONS: cors
   }
 ]
 
