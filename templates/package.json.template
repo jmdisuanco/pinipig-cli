@@ -5,12 +5,24 @@
     "main": "index.js",
     "scripts": {
         "dev": "nodemon ./src/index.js",
-        "start": "node ./src/index.js"
+        "start": "node ./src/index.js",
+        "postinstall": "link-module-alias"
     },
     "dependencies": {
-        "pinipig": "^1.4.3"
+        "pinipig": "^1.4.7"
     },
-    "keywords": [${keywords}],
+    "devDependencies": {
+        "link-module-alias": "^1.2.0"
+    },
+    "_moduleAliases": {
+    "adapters": "src/adapters",
+    "config": "src/config",
+    "routes": "src/routes",
+    "hooks": "src/hooks",
+    "models": "src/models",
+    "plugins": "src/plugins"
+    },
+    "keywords": ${keywords},
     "author": "${author}",
     "license": "${license}"
 }
