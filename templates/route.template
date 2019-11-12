@@ -1,6 +1,6 @@
 const pinipig = require('pinipig')
 const {crud} = pinipig
-const {cors} = pinipig.utils
+const {cors, preFlight} = pinipig.utils
 const ${Model} = require('../models/${model}')
 const {
   create,
@@ -23,18 +23,18 @@ let routes = [{
     GET: [cors,r],
     PUT: [cors, u],
     DEL: [cors, d],
-    OPTIONS: cors
+    OPTIONS: preFlight
   },
   {
     url: '/${model}',
     POST: [cors, c],
     GET: [cors, rl],
-    OPTIONS: cors
+    OPTIONS: preFlight
   },
   {
     url: '/${model}/count',
     GET: [cors, total],
-    OPTIONS: cors
+    OPTIONS: preFlight
   }
 ]
 
