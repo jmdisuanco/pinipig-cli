@@ -1,6 +1,6 @@
 {
   "name": "pinipig-cli",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Pinipig Command Line Interface",
   "main": "index.js",
   "scripts": {
