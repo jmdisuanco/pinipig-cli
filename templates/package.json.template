@@ -9,7 +9,7 @@
         "postinstall": "link-module-alias"
     },
     "dependencies": {
-        "pinipig": "^1.4.7"
+        "pinipig": "^1.4.9"
     },
     "devDependencies": {
         "link-module-alias": "^1.2.0"
